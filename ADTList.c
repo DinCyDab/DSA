@@ -34,7 +34,7 @@ void printStudentListing(studentCount* studentCountList);
 int main(){
     studentCount studentCountList;
     studentCountList.count = 0;
-    studentCountList.list[0] = addStudentListing(addStudent(0001, "Dino Cyrano", "Dabon", "Azucenas", 23, "Male"), addDepartment(0001, "Department of Computer and Information Sciences Mathematics"), &studentCountList);
+    studentCountList.list[0] = addStudentListing(addStudent(0001, "Dino Cyrano", "Dabon", "Azucenas", 23, "Male"), addDepartment(0001, "DCISM"), &studentCountList);
     printStudentListing(&studentCountList);
     return 0;
 }
