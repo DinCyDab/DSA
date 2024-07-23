@@ -1,1 +1,3 @@
-size
+
+        printf("%d, ", arr[i]);
+    }
