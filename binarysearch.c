@@ -10,22 +10,36 @@ int main(){
         arr[i] = i;
         printf("%d ", arr[i]);
     }
-    binarySearch(arr, 0, size-1, 9);
+    binarySearch(arr, 0, size-1, 10);
     free(arr);
     return 0;
 }
 
 int binarySearch(int* arr, int low, int high, int numToFind){
-    if(high >= low){
+    // if(high >= low){
+    //     int mid = low + (high - low) / 2;
+    //     if(arr[mid] == numToFind){
+    //     printf("Number Has Been Found at index %d", mid);
+    //     }
+    //     else if(arr[mid] > numToFind){
+    //         binarySearch(arr, low, mid-1, numToFind);
+    //     }
+    //     else{
+    //         binarySearch(arr, mid+1, high, numToFind);
+    //     }
+    // }
+    // return -1;
+    for(; high >= low;){
         int mid = low + (high - low) / 2;
         if(arr[mid] == numToFind){
-        printf("Number Has Been Found at index %d", mid);
+            printf("Number Has Been Found at index %d", mid);
+            return 1;
         }
-        else if(arr[mid] > numToFind){
-            binarySearch(arr, low, mid-1, numToFind);
+        else if(numToFind > arr[mid]){
+            low = mid + 1;
         }
         else{
-            binarySearch(arr, mid+1, high, numToFind);
+            high = mid - 1;
         }
     }
     return -1;
