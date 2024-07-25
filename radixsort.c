@@ -1,16 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #define size 10
 #define decimalsize 10
+#define randomsize 100000000
 
 int main(){
     srand(time(NULL));
     int arr[size];
     int radix[decimalsize][decimalsize];
     for(int i = 0; i < size; i++){
-        arr[i] = rand() % 10000;
+        arr[i] = rand() % randomsize;
     }
 
     for(int i = 0; i < decimalsize; i++){
@@ -19,24 +21,15 @@ int main(){
         }
     }
 
-    int max_value = arr[0];
     for(int i = 0; i < size; i++){
-        if(max_value < arr[i]){
-            max_value = arr[i];
-        }
+        printf("|%d| ", arr[i]);
     }
+    printf("\n");
     
-    int ctr = 0;
-    int num = max_value;
-    int b = 10;
-    for(ctr = 0; num != 0; ctr++){
-        num = max_value % b/(b/10);
-        b *= 10;
-    }
-
     int a = 10;
     int c = 0;
-    while(c < ctr){
+    int digits = (int)log10(randomsize);
+    while(c < digits){
         for(int i = 0; i < size; i++){
             for(int j = 0; j < decimalsize; j++){
                 int k = 0;
