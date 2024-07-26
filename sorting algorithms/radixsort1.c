@@ -11,7 +11,7 @@ int main(){
     srand(time(NULL));
     int arr[size];
     for(int i = 0; i < size; i++){
-        arr[i] = rand() % 100;
+        arr[i] = rand() % 3;
     }
     radixSort(arr);
     printSort(arr);
