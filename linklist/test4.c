@@ -22,6 +22,7 @@ int main(){
     head = addList(head, 30);
     head = addList(head, 40);
     head = addList(head, 50);
+    head = addList(head, 60);
     printList(head);
     printf("\n");
     head = addLoop(head);
@@ -35,30 +36,16 @@ int main(){
 }
 
 link reverseList(link head){
-    int size = 1;
     link current = head;
-    while(current->next != NULL){
-        size++;
-        current = current->next;
-    }
-    link tail = current;
-    current = head;
     link prev = NULL;
-    int i = 0;
-    while(i < size){
-        current = head;
-        prev = NULL;
-        int j = 0;
-        while(j < size-i-1){
-            prev = current;
-            current = current->next;
-            j++;
-        }
+    link next = NULL;
+    while(current != NULL){
+        next = current->next;
         current->next = prev;
-        i++;
+        prev = current;
+        current = next;
     }
-    head = NULL;
-    return tail;
+    return prev;
 }
 
 link removeLoop(link head){
@@ -83,13 +70,15 @@ link addLoop(link head){
 
 bool hasLoopList(link head){
     bool hasLoop = false;
-    link current = head->next;
-    while(current != NULL){
-        if(current == head){
+    link slow = head;
+    link fast = head;
+    while(fast != NULL && fast->next != NULL && slow != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast){
             hasLoop = true;
             break;
         }
-        current = current->next;
     }
     return hasLoop;
 }
