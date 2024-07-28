@@ -7,16 +7,18 @@
 int arr_stack[MAX];
 int top = -1;
 
-void push(int value);
+void push();
 void printStack();
 void pop();
-bool isFull();
-bool isEmpty();
+void isFull();
+void isEmpty();
 void printTop();
 
 int main(){
     int choice;
     while(1){
+        choice = 10;
+        system("cls");
         printf("1.)Push a value\n");
         printf("2.)Pop a value\n");
         printf("3.)Check if Empty Stack\n");
@@ -30,9 +32,7 @@ int main(){
 
         switch(choice){
             case 1:
-                printf("Enter a value to add:");
-                scanf("%d", &choice);
-                push(choice);
+                push();
                 break;
             case 2:
                 pop();
@@ -51,6 +51,7 @@ int main(){
                 break;
             default:
                 printf("Please choose a correct value\n");
+                system("pause");
                 break;
         }
     }
@@ -58,54 +59,71 @@ int main(){
 }
 
 void printTop(){
-    if(isEmpty()){
+    if(top <= -1){
         printf("Stack Underflow\n");
+        system("pause");
         return;
     }
     printf("The top Value is: %d\n", arr_stack[top]);
+    system("pause");
 }
 
-bool isFull(){
+void isFull(){
     if(top >= MAX){
-        return true;
+        printf("Stack is Full\n");
     }
     else{
-        return false;
+        printf("Stack is not Full\n");
     }
+    system("pause");
 }
 
-bool isEmpty(){
+void isEmpty(){
     if(top <= -1){
-        return true;
+        printf("Stack is Empty\n");
     }
     else{
-        return false;
+        printf("Stack is not Empty\n");
     }
+    system("pause");
 }
 
 void pop(){
-    if(isEmpty()){
+    if(top <= -1){
         printf("Stack Underflow\n");
+        system("pause");
         return;
     }
     printf("Deleted: %d\n", arr_stack[top]);
+    system("pause");
     top--;
 }
 
-void push(int value){
-    if(isFull()){
+void push(){
+    if(top >= MAX){
         printf("Stack Overflow\n");
+        system("pause");
         return;
     }
-    top++;
-    arr_stack[top] = value;
+    int value;
+    bool input;
+    printf("Enter Value to Add:");
+    input = scanf("%d", &value);
+    fflush(stdin);
+    if(input){
+        top++;
+        arr_stack[top] = value;
+    }
+    else{
+        printf("Please enter a number\n");
+        system("pause");
+    }
 }
 
 void printStack(){
     printf("Current Stack:\n");
-    if(top == -1){
+    for(int i = 0; i < MAX - top; i++){
         printf("|____|\n");
-        return;
     }
     for(int i = top; i >= 0; i--){
         printf("|_%d_|\n", arr_stack[i]);
