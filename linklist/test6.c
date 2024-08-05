@@ -9,6 +9,7 @@ typedef struct node{
 void printList(Node head);
 void freeList(Node head);
 void addList(Node* head, int value);
+Node reverseList(Node head);
 
 int main(){
     Node head = NULL;
@@ -17,9 +18,23 @@ int main(){
     addList(&head, 3);
     addList(&head, 4);
     addList(&head, 5);
+    head = reverseList(head);
     printList(head);
     freeList(head);
     return 0;
+}
+
+Node reverseList(Node head){
+    Node current = head;
+    Node next = NULL;
+    Node prev = NULL;
+    while(current != NULL){
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
 }
 
 void addList(Node* head, int value){
