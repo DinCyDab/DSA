@@ -3,6 +3,7 @@
         "*.embeddedhtml": "html",
         "stdio.h": "c",
         "math.h": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "battleship": "c"
     }
 }
